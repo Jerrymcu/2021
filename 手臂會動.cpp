@@ -12,12 +12,18 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);///清空
     glPushMatrix();///TODO: 備份矩陣
         glTranslatef(-0.25,0,0);
-        glRotatef(angle++,0,0,1);
+        glRotatef(angle,0,0,1);
         glTranslatef(-0.25,0,0);
         hand();
-    glPopMatrix(); ///TODO: 還原矩陣
-    hand();
+        glPushMatrix(); ///TODO: 還原矩陣
+            glTranslatef(-0.25,0,0);
+            glRotatef(angle,0,0,1);
+            glTranslatef(-0.25,0,0);
+            hand();
+        glPopMatrix();
+    glPopMatrix();
     glutSwapBuffers();
+    angle++;
 }
 int main(int argc, char ** argv)
 {
